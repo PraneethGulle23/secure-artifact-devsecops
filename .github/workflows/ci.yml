@@ -46,19 +46,19 @@ jobs:
       - name: Build Docker Images
         run: docker compose build
 
-      # -------------------------------
+            # -------------------------------
       # Container Security Scan (Official Trivy Action)
       # -------------------------------
       - name: Scan Backend Image
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'secureartifact-backend'
-          severity: 'HIGH,CRITICAL'
-          exit-code: '1'
+          image-ref: secureartifact-backend
+          severity: HIGH,CRITICAL
+          exit-code: 1
 
       - name: Scan Frontend Image
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.20.0
         with:
-          image-ref: 'secureartifact-frontend'
-          severity: 'HIGH,CRITICAL'
-          exit-code: '1'
+          image-ref: secureartifact-frontend
+          severity: HIGH,CRITICAL
+          exit-code: 1

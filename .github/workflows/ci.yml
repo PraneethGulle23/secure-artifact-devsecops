@@ -47,22 +47,18 @@ jobs:
         run: docker compose build
 
       # -------------------------------
-      # Install Trivy
+      # Container Security Scan (Official Trivy Action)
       # -------------------------------
-      - name: Install Trivy
-        run: |
-          sudo apt-get update
-          sudo apt-get install wget -y
-          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.50.2_Linux-64bit.deb
-          sudo dpkg -i trivy_0.50.2_Linux-64bit.deb
+      - name: Scan Backend Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'secureartifact-backend'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
 
-      # -------------------------------
-      # Container Vulnerability Scan (STRICT)
-      # -------------------------------
-      - name: Scan Backend Image (Fail on HIGH/CRITICAL)
-        run: |
-          trivy image --severity HIGH,CRITICAL --exit-code 1 secureartifact-backend
-
-      - name: Scan Frontend Image (Fail on HIGH/CRITICAL)
-        run: |
-          trivy image --severity HIGH,CRITICAL --exit-code 1 secureartifact-frontend
+      - name: Scan Frontend Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'secureartifact-frontend'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'

@@ -1,0 +1,48 @@
+.sidebar {
+  width: 260px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h1 {
+  font-size: 22px;
+  margin-bottom: 50px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar a {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  transition: 0.3s;
+  color: #ccc;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .active {
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: white;
+}
+
+.logout-btn {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 12px;
+  background: #e63946;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #d62828;
+}

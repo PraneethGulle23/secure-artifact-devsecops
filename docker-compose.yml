@@ -8,47 +8,29 @@ services:
     volumes:
       - mongo_data:/data/db
 
-backend:
-  build: ./backend
-  image: secureartifact-backend
-  container_name: secureartifact-backend
-  restart: always
-  env_file:
-    - ./backend/.env
-  ports:
-    - "5000:5000"
-  depends_on:
-    - mongo
+  backend:
+    build:
+      context: ./backend
+    image: secureartifact-backend
+    container_name: secureartifact-backend
+    restart: always
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
 
-frontend:
-  build: ./frontend
-  image: secureartifact-frontend
-  container_name: secureartifact-frontend
-  restart: always
-  ports:
-    - "3000:80"
-  depends_on:
-    - backend
-
-  # backend:
-  #   build: ./backend
-  #   container_name: secureartifact-backend
-  #   restart: always
-  #   env_file:
-  #     - ./backend/.env
-  #   ports:
-  #     - "5000:5000"
-  #   depends_on:
-  #     - mongo
-
-  # frontend:
-  #   build: ./frontend
-  #   container_name: secureartifact-frontend
-  #   restart: always
-  #   ports:
-  #     - "3000:80"
-  #   depends_on:
-  #     - backend
+  frontend:
+    build:
+      context: ./frontend
+    image: secureartifact-frontend
+    container_name: secureartifact-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 
 volumes:
   mongo_data:

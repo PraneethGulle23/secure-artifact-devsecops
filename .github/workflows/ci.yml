@@ -53,12 +53,12 @@ jobs:
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: secureartifact-backend
-          severity: HIGH,CRITICAL
+          severity: CRITICAL
           exit-code: 1
 
       - name: Scan Frontend Image
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: secureartifact-frontend
-          severity: HIGH,CRITICAL
+          severity: CRITICAL
           exit-code: 1

@@ -19,11 +19,12 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
+app.use("/api/artifacts", require("./routes/artifactRoutes"));
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-app.use("/api/artifacts", require("./routes/artifactRoutes"));
+// app.use("/api/artifacts", require("./routes/artifactRoutes"));
 
 const orgRoutes = require("./routes/orgRoutes");
 app.use("/api/org", orgRoutes);
